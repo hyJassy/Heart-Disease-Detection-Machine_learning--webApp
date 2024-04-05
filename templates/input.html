@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Predictor </title>
+  
+<style>
+    html, *{
+  padding: 0;
+  margin: 0;
+}
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #ffffff;
+  background-image: url('{{ url_for('static', filename='images/input.jpg') }}');
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto;
+  overflow-x: hidden !important;
+
+
+}
+
+.container {
+  width: 60%;
+  padding: 30px;
+  margin: auto;
+  
+  border-radius: 4.2px;
+ 
+}
+.container {
+    background-image: url;
+  background-repeat: no-repeat;
+  opacity: 0.9;
+  background-size: cover;
+
+}
+   
+p {
+  color: #ffffff;
+  font-size: 20px;
+}
+
+input{
+  color:#ffffff;
+  margin: 10px;  
+
+}
+
+input,
+input[type="radio"] + label,
+input[type="checkbox"] + label:before
+{
+  width: 20%;
+  padding: 1em;
+  line-height: 1.4;
+  background-color: #222;
+  border: 1px solid rgb(236, 101, 101);
+  border-radius: 3px;
+  -webkit-transition: 0.35s ease-in-out;
+  -moz-transition: 0.35s ease-in-out;
+  -o-transition: 0.35s ease-in-out;
+  transition: 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+input:focus {
+  outline: 0;
+  border-color: #ff7b00;
+}
+
+input:focus + .input-icon:after {
+  border-right-color: #69cb00;
+}
+
+input[type="radio"] {
+  display: none;
+}
+input[type="radio"] + label,
+select {
+  display: inline-flex;
+  margin: 10px;
+  width: 40%;
+}
+
+input[type="radio"]:checked + label,
+input:checked + label:before,
+select:focus,
+select:active {
+  background-color: #ffffff;
+  color: #550303;
+  border-color: #64ac15;
+}
+input[type="checkbox"] {
+  display: none;
+}
+input[type="checkbox"] + label {
+  position: relative;
+  display: block;
+  padding-left: 1.6em;
+}
+
+#submit{
+  width: 90%;
+  background-color: #ffcb30;
+  color: #000 !important;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@media(max-width: 1024px) {
+  .container{
+    width: 100%;
+    font-size: 20px;
+  }
+}
+
+@media(max-width: 676px) {
+  .container {
+    width: 100%;
+    font-size: 18px;
+    padding: 0px;
+    padding-left: 20px;
+    padding-top: 20px;
+  }
+
+  input[type="radio"] + label{
+    display: flex;
+    margin: 10px;
+    width: 50%;
+  }
+  #submit{
+    width: 50%;
+    
+    padding: 10px;
+  }
+}
+
+
+
+.result{
+  width: 80%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  text-align: center;
+
+}
+
+.result h1{
+  color: tomato;
+  margin: 30px;
+}
+
+.result i{
+  font-size: 70px;
+  color: tomato;
+}
+
+.result button{
+  margin-top: 50px;
+  padding: 10px;
+  background-color: #000;
+  outline: none;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.msg{
+  background-color: rgb(221, 113, 113);
+  padding: 20px;
+  position: fixed;
+  width: 100%;
+
+}
+
+.msg p{
+  color: rgb(109, 21, 21);
+}
+
+.loader-container{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/*
+.loader {
+  position: fixed;
+  display: flex;
+
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3498db; 
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+} 
+*/
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+#result-negative h1, #result-negative i{
+  color: #ffc107;
+} 
+
+
+</style>
+
+
+</head>
+<body>
+   <!--- <div class="loader-container">
+
+        <div class="loader"></div>
+    </div>
+    <h1 id="a"></h1>
+    <div class="result" id="result-positive">
+        <h1>This person has Heart Disease</h1>
+        <i class="fa fa-frown-o"></i>
+        <a href=""><button>Try for another person</button></a>
+    </div>
+
+    <div class="result" id="result-negative">
+        <h1>This Person don't have heart disease</h1>
+        <i class="fa fa-smile-o"></i>
+        <a href=""><button>Try for another person</button></a>
+    </div>
+
+    <div class="msg">
+        <p>Please check the data you entered</p>
+    </div>-->
+    <div class="container"> 
+ 
+      <form action="{{url_for('pridict')}}" method="post">
+           <div class="box">
+           
+            <textarea style="color: white; background: rgba(0, 0, 0, 0.3);" class="textarea" readonly; width:50px;>
+
+                It's a clean, easy to understand set of data. However, the meaning of some of the column headers are not obvious. Here's what they mean,  
+                Age: displays the age of the individual.  
+                Sex: displays the gender of the individual using the following format :  
+                1 = male  
+                0 = female  
+                Chest-pain type: displays the type of chest-pain experienced by the individual using the following format :  
+                0 = typical angina  
+                1 = atypical angina  
+                2 = non — anginal pain  
+                3 = asymptotic  
+                Resting Blood Pressure: displays the resting blood pressure value of an individual in mmHg (unit)  
+                Serum Cholestrol: displays the serum cholesterol in mg/dl (unit)  
+                Fasting Blood Sugar: compares the fasting blood sugar value of an individual with 120mg/dl.  
+                If fasting blood sugar > 120mg/dl then : 1 (true) else : 0 (false)  
+                Resting ECG : displays resting electrocardiographic results  
+                0 = normal  
+                1 = having ST-T wave abnormality  
+                2 = left ventricular hyperthrophy  
+                Max heart rate achieved : displays the max heart rate achieved by an individual.  
+                Exercise induced angina :  
+                1 = yes  
+                0 = no  
+                ST depression induced by exercise relative to rest: displays the value which is an integer or float.  
+                Peak exercise ST segment :  
+                1 = upsloping  
+                2 = flat  
+                3 = downsloping  
+                Number of major vessels (0–3) colored by flourosopy : displays the value as integer or float.  
+                Thal : displays the thalassemia :  
+                0 = normal  
+                1 = fixed defect  
+                2 = reversible defect  
+                Diagnosis of heart disease : Displays whether the individual is suffering from heart disease or not :  
+                0 = absence  
+                1, 2, 3, 4 = present.  
+            </textarea>
+            </div>
+            
+              <label for="age"><p>Age:</p></label>
+              <input type="number" id="age" name="age" min="5" max="99" required />
+          
+              <p>Gender</p>
+              <input type="radio" value="1" name="sex" id="male"> 
+              <label for="male">Male</label>
+              <input type="radio" value="0" name="sex" id="female">
+              <label for="female">Female</label>
+              <br><br> 
+          
+              <p>Chest Pain Type</p>
+              <input type="radio" id="typical-angina" name="chest_pain" value="0">
+              <label for="typical-angina">Maximum</label>
+              <input type="radio" id="atypical-angina" name="chest_pain" value="1">
+              <label for="atypical-angina">Low</label>
+              <input type="radio" id="non-anginal-pain" name="chest_pain" value="2">
+              <label for="non-anginal-pain">Moderate</label>
+              <input type="radio" id="asymptomatic" name="chest_pain" value="3">
+              <label for="asymptomatic">Minimal</label>
+              <br><br>
+          
+              <label for="resting_bp"><p>Resting Blood Pressure:</p></label>
+              <input type="number" id="resting_bp" name="resting_bp" min="50" max="200" required />
+              <br><br>
+
+              <label for="cholesterol"><p>Serum Cholesterol (mg/dl):</p></label>
+              <input type="number" id="cholesterol" name="cholestrol" min="50" max="300" required />
+          
+              <p>Fasting Blood Sugar > 120 mg/dl</p>
+              <input type="radio" value="1" name="fasting_blood_sugar" id="true">
+              <label for="true"> True</label>
+              <input type="radio" value="0" name="fasting_blood_sugar" id="false">
+              <label for="false">False</label> <br><br>
+          
+              <p>Resting Electrocardiographic Results</p>
+              <input type="radio" value="0" name="resting_ecg" id="normal" > 
+              <label for="normal">Normal</label>
+              <input type="radio" value="1" name="resting_ecg" id="st">
+              <label for="st">Having ST-T wave abnormality</label>
+              <input type="radio" value="2" name="resting_ecg" id="sh">
+              <label for="sh">Showing probable or definite left ventricular hypertrophy</label> <br><br>
+          
+              <label for="max_heart_rate"><p>Max Heart Rate Achieved:<p></label>
+              <input type="number" id="max_heart_rate" min="50" max="200" name="max_heart_rate" required />
+          
+              <p>Exercise Induced Angina</p>
+              <input type="radio" value="1" name="exercise_agina" id="yes"> 
+              <label for="yes">Yes</label>
+              <input type="radio" value="0" name="exercise_agina" id="no"> 
+              <label for="no">No</label> <br><br>
+          
+              <label for="old_peak"><p>Old Peak(ST Depression Induced by Exercise Relative to Rest):</p></label>
+              <input type="number" id="old_peak" name="old_peak" min="0" max="5" required />
+          
+              <p>ST_Slope(The Slope of the Peak Exercise ST Segment)</p>
+              <input type="radio" value="0" name="st_slope" id="upsloping"> 
+              <label for="upsloping">Upsloping</label>
+              <input type="radio" value="1" name="st_slope" id="flat"> 
+              <label for="flat">Flat</label>
+              <input type="radio" value="2" name="st_slope" id="downsloping"> 
+              <label for="downsloping">Downsloping</label> <br><br>
+          
+              <input id="submit" type="submit" value="Submit data">
+          </form>
+          
+    </div>
+    
+    <!---<script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector("form");
+        const container = document.querySelector(".container");
+        const resultPositive = document.getElementById("result-positive");
+        const resultNegative = document.getElementById("result-negative");
+        const errorMsg = document.querySelector('.msg');
+        const spinner = document.querySelector('.loader-container');
+    
+        errorMsg.style.display = 'none';
+        spinner.style.display = 'none';
+    
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            spinner.style.display = '';
+    
+            const formData = new FormData(form);
+            try {
+                const response = await fetch('/pridict', {
+                    method: 'POST',
+                    body: formData
+                });
+    
+                if (!response.ok) {
+                    throw new Error('Server response was not OK.');
+                }
+    
+                const prediction = await response.json();
+                container.style.display = 'none';
+    
+                if (prediction > 0) {
+                    resultPositive.style.display = '';
+                } else {
+                    resultNegative.style.display = '';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                errorMsg.style.display = '';
+            } finally {
+                spinner.style.display = 'none';
+            }
+        });
+    });
+    
+  </script>-->
+  
+
+
+
+</body>
+
+</html>
+
+
+<!-- sample Values --><!-- 
+{ 
+    "age":57,
+   "sex":1,
+   "cp":3,
+   "trestbps":170,
+   "chol":288,
+   "fbs":0,
+   "restecg":0,
+   "thalach":159,
+   "exang":0,
+   "oldpeak":0.2,
+   "slope":1,
+    "ca":0,
+   "thal":3
+   } -->

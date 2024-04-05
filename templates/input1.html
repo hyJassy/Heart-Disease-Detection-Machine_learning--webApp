@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="static\css\styles.css" />
+    <title>Heart Disease Detection - Input Form</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Heart Disease Detection</h1>
+      <form action="{{url_for('pridict')}}" method="post">
+        <!-- Add input fields for collecting relevant data -->
+        <label for="age">Age:</label>
+        <input type="float" id="age" name="age" required />
+
+        <label for="sex">Sex:</label>
+        <input type="float" id="sex" name="sex" required />
+
+        <label for="chest_pain">Chest Pain:</label>
+        <input type="float" id="chest_pain" name="chest_pain" required />
+
+        <label for="resting_bp">Resting bp:</label>
+        <input type="float" id="resting_bp" name="resting_bp" required />
+
+        <label for="cholestrol">Cholestrol:</label>
+        <input type="float" id="cholestrol" name="cholestrol" required />
+
+        <label for="fasting_blood_sugar">Fasting Blood sugar:</label>
+        <input
+          type="float"
+          id="fasting_blood_sugar"
+          name="fasting_blood_sugar"
+          required
+        />
+
+        <label for="resting_ecg">Resting ECG:</label>
+        <input type="float" id="resting_ecg" name="resting_ecg" required />
+
+        <label for="max_heart_rate">Max heart rate:</label>
+        <input
+          type="float"
+          id="max_heart_rate"
+          name="max_heart_rate"
+          required
+        />
+
+        <label for="exercise_agina">Exercize agina:</label>
+        <input
+          type="float"
+          id="exercise_agina"
+          name="exercise_agina"
+          required
+        />
+
+        <label for="old_peak">Old peak:</label>
+        <input type="float" id="old_peak" name="old_peak" required />
+
+        <label for="st_slope">ST slope:</label>
+        <input type="float" id="st_slope" name="st_slope" required />
+        <!-- Add more input fields as needed -->
+
+        <button type="submit">Predict</button>
+      </form>
+    </div>
+  </body>
+</html>

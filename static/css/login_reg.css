@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url(../images/main_back.jpg );
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: hsla(0, 0%, 91%, 0);
+  }
+  
+
+  .container {
+    background-color: rgba(255, 0, 0, 0.519);
+    border-radius: 120px;
+    box-shadow: 0 0 10px rgba(50, 35, 162, 0.9);
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    max-width: 400px;
+    padding: 20px;
+  }
+  
+  .form-container {
+    text-align: center;
+    padding-top: 25px;
+  }
+  
+  .form-toggle {
+    margin-bottom: 20px;
+  }
+  
+  .form-toggle button {
+    background-color: transparent;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .form-toggle button:hover {
+    background-color: hwb(0 0% 0%);
+  }
+  
+  .form {
+    display: none;
+    width: 100%;
+  }
+  .form p {
+    color: rgb(248, 247, 248);
+    font-size: 12px;
+  }
+  .form p a {
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 12px;
+  }
+  .form p a:hover{
+    color: #02ff7c;
+  }
+  .form h2 {
+    font-size: 24px;
+    margin: 0 0 20px;
+    color: white;
+  }
+  
+  .input-container {
+    margin-bottom: 15px;
+    margin-right: 20px;
+  }
+  
+  .input-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    
+  }
+  
+  button {
+    background-color: #000000f9;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #333333;
+  }

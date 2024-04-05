@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-image: url('{{ url_for('static', filename='images/bckgrd.jpg') }}');
+            background-size: cover;
+        }
+.result{
+  width: 80%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  text-align: center;
+
+}
+
+.result h1{
+  color: tomato;
+  margin: 30px;
+}
+
+.result i{
+  font-size: 70px;
+  color: tomato;
+}
+
+.result button{
+  margin-top: 50px;
+  padding: 10px;
+  background-color: #000;
+  outline: none;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+#result-negative h1, #result-negative i{
+  color: #ffc107;
+} 
+
+    </style>
+</head>
+
+
+<body>
+    <div class="loader-container">
+
+        <div class="loader"></div>
+    </div>
+    <h1 id="a"></h1>
+    <div class="result" id="result-positive">
+        <h1>This person has Heart Disease</h1>
+        <i class="fa fa-frown-o"></i>
+        <img src="static\images\sadd.png" alt="Workplace" usemap="#workmap" width="400" height="379">
+        <a href="{{ url_for('input') }}"><button>Try for another person</button></a>
+    </div>
+
+  
+</body>
