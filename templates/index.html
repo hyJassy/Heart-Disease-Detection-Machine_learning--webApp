@@ -47,7 +47,8 @@
                 <li class="active"><a data-nav-section="home" href="#">Home</a></li>
                 <li><a data-nav-section="features" href="#">Features</a></li>
                 <li><a data-nav-section="predict" href="#">Predict</a></li>
-                <li><a data-nav-section="analysis" href="#">Analysis</a></li>
+                <li><a data-nav-section="Consultants" href="{{ url_for('doc') }}">Consultants</a></li>
+                
                 
                 
                 {% if 'loggedin' in session %}
@@ -146,7 +147,13 @@
             <div class="col-md-8 col-md-offset-2 probootstrap-section-heading">
                 <h2 class="mb30 text-black probootstrap-heading">Predict your Chance of Having a Heart Disease</h2>
                 <p>Enter the appropriate values of symptoms you face. Get the chances of you contracting heart disease
-                    based on those values.</p>
+                    based on those values. </p>
+                    <h>Disclaimer:<h>
+                    <p>
+
+                        Please note that while our machine learning model is designed to provide accurate predictions based on the data it has been trained on, it is not a substitute for professional medical advice, diagnosis, or treatment. The predictions made by the system should be used as a supplementary tool to assist healthcare professionals in their clinical assessments.
+                        
+                        We are not responsible for any health damage, loss, or adverse outcomes resulting from the use of our heart disease detection system. Patients and healthcare providers should always consult with qualified medical professionals for diagnosis and treatment decisions.</p>
                     <a href="{{ url_for('input') }}" class="btn btn-primary">
                         <img src="static\images\heart-pulse-fill.svg" alt="Button Image"> Predict
                     </a>
@@ -155,7 +162,7 @@
         <!-- END row -->
        
 
-                     link parameter page
+                     
 
 
 

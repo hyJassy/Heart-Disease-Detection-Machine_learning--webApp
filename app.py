@@ -96,6 +96,12 @@ def profile():
         return render_template('profile.html', username=session['username'])
     return redirect(url_for('login'))
 
+@app.route('/doc')
+def doc():
+    return render_template('doc.html')
+
+
+
 
 @app.route('/input', methods=['GET', 'POST'])
 def input():
